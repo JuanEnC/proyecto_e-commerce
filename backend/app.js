@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Servir archivos estáticos del frontend
-app.use(express.static(path.join(__dirname, '../frontend')));
+//app.use(express.static(path.join(__dirname, '../frontend')));
 
 // ==========================================
 // IMPORTACIÓN DE RUTAS
@@ -32,13 +32,17 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/clients', clientRoutes);
 
 // Ruta raíz para servir el index.html
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/index.html'));
-});
+});*/
 
 // Manejo de rutas inexistentes (404)
 app.use((req, res) => {
     res.status(404).json({ message: "Ruta no encontrada." });
+});
+
+app.get('/', (req, res) => {
+    res.json({ message: "API del E-commerce funcionando correctamente" });
 });
 
 // Arranque del servidor

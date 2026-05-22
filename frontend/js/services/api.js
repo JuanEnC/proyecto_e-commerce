@@ -1,7 +1,10 @@
 // frontend/js/services/api.js
+// Reemplaza la línea "const BASE_URL = ..." por esto:
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+// Aquí pondrás la URL que te dé Render en el Paso 3
+const PRODUCTION_URL = 'https://https://proyecto-e-commerce-1.onrender.com-api-backend.onrender.com/api'; 
 
-// 1. Definimos la URL base de tu Backend. 
-const BASE_URL = 'http://localhost:3000/api';
+const BASE_URL = isLocal ? 'http://localhost:3000/api' : PRODUCTION_URL;
 
 // 2. Creamos el objeto global API que contendrá todos nuestros métodos
 const API = {
