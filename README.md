@@ -6,7 +6,7 @@
     <img src="https://img.shields.io/badge/Licencia-MIT-green?style=for-the-badge" alt="License">
   </p>
   <p>Una plataforma de comercio electrónico robusta, escalable y estructurada bajo una arquitectura cliente-servidor.</p>
-  <a href="https://proyecto-e-commerce-81d4.vercel.app/" target="_blank">Link de la pagina</a>
+  <a href="https://proyecto-e-commerce-81d4.vercel.app/" target="_blank" rel="noopener noreferrer">Link de la pagina</a>
 </div>
 
 ---
