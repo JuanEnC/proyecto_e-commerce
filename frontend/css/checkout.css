@@ -1,0 +1,188 @@
+/* === REGLAS DE DISEÑO CORREGIDAS === */
+
+.checkout-container {
+    padding: 2rem 5%;
+    z-index: 10;
+}
+
+.checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 2rem;
+    align-items: start;
+}
+
+/* TARJETA DE CRISTAL (Glassmorphism) */
+.glass-card {
+    background: rgba(10, 15, 30, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.glass-card h3 {
+    margin-bottom: 2rem;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.mt-2 { margin-top: 2rem; }
+
+/* === CORRECCIÓN DE CAJAS DE TEXTO (INPUTS) === */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+/* Diseño moderno sobre fondo oscuro */
+.input-group input {
+    background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil semitransparente */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
+    color: var(--text-main); /* Texto claro */
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none; /* Quitar contorno por defecto */
+    transition: all 0.3s ease; /* Transición suave */
+}
+
+/* EFECTO NEÓN: Brillo y luz al enfocar */
+.input-group input:focus {
+    border-color: var(--primary-blue); /* Color de neón */
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.2); /* Sombra de luz proyectada */
+    background-color: rgba(255, 255, 255, 0.08); /* Aclarar un poco */
+}
+
+/* Estilo para el placeholder */
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.4); /* Gris más oscuro y sutil */
+}
+
+/* === CORRECCIÓN DEL ENLACE "VOLVER" (NAVBAR) === */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    z-index: 10;
+}
+
+.navbar .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre icono y texto */
+    color: var(--text-main); /* Texto claro */
+    text-decoration: none; /* Quitar subrayado por defecto */
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+/* Efecto de hover: Brillo y cambio sutil */
+.navbar .nav-link:hover {
+    color: var(--primary-blue); /* Color de neón */
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.4); /* Resplandor de texto */
+    transform: translateX(-3px); /* Un sutil movimiento hacia atrás */
+}
+
+/* Estilos para el icono dentro del enlace (FontAwesome) */
+.navbar .nav-link i {
+    font-size: 1.1rem;
+}
+
+/* OTROS ESTILOS EXISTENTES ... */
+
+/* OPCIONES DE PAGO */
+.payment-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.payment-card {
+    cursor: pointer;
+}
+
+.payment-card input {
+    display: none;
+}
+
+.card-content {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.2rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.payment-card input:checked + .card-content {
+    border-color: var(--primary-blue);
+    background: rgba(0, 210, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+}
+
+/* ITEMS DEL RESUMEN */
+.summary-items {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 2rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+.summary-totals hr {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 1.5rem 0;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.7rem;
+    color: var(--text-muted);
+}
+
+.grand-total {
+    color: var(--text-main);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.text-green { color: #00ff88; }
+
+@media (max-width: 960px) {
+    .checkout-grid { grid-template-columns: 1fr; }
+}

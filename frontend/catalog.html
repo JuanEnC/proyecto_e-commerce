@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | Mi Tienda</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/catalog.css">
+    <link rel="stylesheet" href="./css/cart.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="assets/images/shoppingstorecart_99691.svg" type="image/x-icon">
+</head>
+
+<body>
+    <div class="bg-lines"></div>
+
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-icon"></span>
+            Mi Tienda
+        </div>
+
+        <div class="search-container">
+            <i class="fa fa-search"></i>
+            <input type="text" id="searchInput" placeholder="Buscar productos por nombre...">
+        </div>
+
+        <div class="nav-actions">
+            <a href="orders.html" class="nav-link">Mis Pedidos</a>
+            <div class="cart-icon-wrapper" id="openCart">
+                <i class="fa fa-shopping-cart"></i>
+                <span id="cartCount" class="cart-badge">0</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="catalog-container">
+        <h1 class="section-title">Nuestros <span class="text-glow">Productos</span></h1>
+        <div id="productGrid" class="product-grid">
+        </div>
+    </main>
+
+    <aside id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Tu Carrito</h3>
+            <button id="closeCart" class="close-btn">&times;</button>
+        </div>
+
+        <div id="cartItems" class="cart-items">
+            <p class="empty-msg">Tu carrito está vacío</p>
+        </div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button id="btnCheckout" class="btn btn-primary btn-block">Realizar Pedido</button>
+        </div>
+    </aside>
+
+    <div id="overlay" class="overlay"></div>
+    <script src="./js/services/api.js"></script>x|
+    <script src="./js/cart.js"></script>
+    <script src="./js/catalog.js"></script>
+</body>
+
+</html>

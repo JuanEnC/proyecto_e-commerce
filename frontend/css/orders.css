@@ -1,0 +1,121 @@
+.orders-container {
+    padding: 2rem 5%;
+    max-width: 1000px;
+    margin: 0 auto;
+    z-index: 10;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.loading-text, .empty-msg {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 3rem;
+    background: rgba(10, 15, 30, 0.5);
+    border-radius: 15px;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+}
+
+/* --- TARJETAS DE PEDIDO --- */
+.order-card {
+    background: rgba(10, 15, 30, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(0, 210, 255, 0.4);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.order-id {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.order-date {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.order-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-total {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+/* --- ETIQUETAS DE ESTADO (BADGES) --- */
+.status-badge {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-pending {
+    background: rgba(243, 156, 18, 0.15);
+    color: #f39c12;
+    border: 1px solid #f39c12;
+}
+
+.status-completed {
+    background: rgba(46, 204, 113, 0.15);
+    color: #2ecc71;
+    border: 1px solid #2ecc71;
+}
+
+.status-cancelled {
+    background: rgba(231, 76, 60, 0.15);
+    color: #e74c3c;
+    border: 1px solid #e74c3c;
+}
+
+/* Ajustes para la navbar en esta página */
+.navbar .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    color: var(--primary-blue);
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
+    transform: translateX(-3px);
+}

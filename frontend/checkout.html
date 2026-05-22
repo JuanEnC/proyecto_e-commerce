@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra | Mi Tienda</title>
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/checkout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="assets/images/shoppingstorecart_99691.svg" type="image/x-icon">
+</head>
+
+<body>
+    <div class="bg-lines"></div>
+
+    <header class="navbar">
+        <div class="logo">
+            <span class="logo-icon"></span>
+            Mi Tienda
+        </div>
+        <a href="catalog.html" class="nav-link"><i class="fa fa-arrow-left"></i> Volver al Catálogo</a>
+    </header>
+
+    <main class="checkout-container">
+        <div class="checkout-grid">
+            <section class="checkout-form-section">
+                <div class="glass-card">
+                    <h3><i class="fa fa-truck"></i> Información de Entrega</h3>
+                    <form id="checkoutForm">
+                        <div class="input-group">
+                            <label>Dirección Completa</label>
+                            <input type="text" id="address" placeholder="Calle, número, colonia..." required>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label>Ciudad</label>
+                                <input type="text" id="city" required>
+                            </div>
+                            <div class="input-group">
+                                <label>Código Postal</label>
+                                <input type="text" id="zipCode" required>
+                            </div>
+                        </div>
+
+                        <h3 class="mt-2"><i class="fa fa-credit-card"></i> Método de Pago</h3>
+                        <div class="payment-options">
+                            <label class="payment-card">
+                                <input type="radio" name="payment" value="card" checked>
+                                <div class="card-content">
+                                    <i class="fa fa-credit-card"></i>
+                                    <span>Tarjeta</span>
+                                </div>
+                            </label>
+                            <label class="payment-card">
+                                <input type="radio" name="payment" value="paypal">
+                                <div class="card-content">
+                                    <i class="fab fa-paypal"></i>
+                                    <span>PayPal</span>
+                                </div>
+                            </label>
+                        </div>
+
+                        <div id="cardFields">
+                            <div class="input-group">
+                                <label>Número de Tarjeta</label>
+                                <input type="text" placeholder="0000 0000 0000 0000">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block mt-2">
+                            Confirmar y Pagar
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="checkout-summary-section">
+                <div class="glass-card">
+                    <h3>Resumen de Orden</h3>
+                    <div id="summaryItems" class="summary-items">
+                        </div>
+                    <div class="summary-totals">
+                        <div class="total-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$0.00</span>
+                        </div>
+                        <div class="total-row">
+                            <span>Envío</span>
+                            <span class="text-green">Gratis</span>
+                        </div>
+                        <hr>
+                        <div class="total-row grand-total">
+                            <span>Total</span>
+                            <span id="grandTotal">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="./js/services/api.js"></script>
+    <script src="./js/checkout.js"></script>
+</body>
+</html>

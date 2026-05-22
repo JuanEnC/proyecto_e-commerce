@@ -1,0 +1,156 @@
+/* Reseteo y variables globales */
+:root {
+    --bg-dark: #050B14;
+    --primary-blue: #00d2ff;
+    --secondary-blue: #3a7bd5;
+    --text-main: #ffffff;
+    --text-muted: #a0aec0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* --- EFECTOS DE LUCES Y SOMBRAS (BACKGROUND) --- */
+body::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, transparent 40%);
+    z-index: -2;
+}
+
+/* Líneas diagonales modernas */
+.bg-lines {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 80px,
+        rgba(0, 210, 255, 0.03) 80px,
+        rgba(0, 210, 255, 0.03) 82px
+    );
+    z-index: -1;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 24px;
+    height: 24px;
+    border: 4px solid var(--text-main);
+    border-radius: 50%;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin: 0 1.5rem;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-main);
+}
+
+/* --- HERO SECTION --- */
+.hero-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    z-index: 10;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+/* Texto iluminado */
+.text-glow {
+    font-weight: 300;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--text-main);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.hero-content p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+/* --- BOTONES --- */
+.btn {
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+/* Botón con borde brillante (Login) */
+.btn-outline {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: var(--text-main);
+}
+
+.btn-outline:hover {
+    border-color: var(--text-main);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Botón principal (Comenzar Ahora) */
+.btn-primary {
+    border: 1px solid var(--primary-blue);
+    color: var(--text-main);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.3), inset 0 0 10px rgba(0, 210, 255, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-primary:hover {
+    background-color: rgba(0, 210, 255, 0.1);
+    box-shadow: 0 0 25px rgba(0, 210, 255, 0.5), inset 0 0 15px rgba(0, 210, 255, 0.2);
+}

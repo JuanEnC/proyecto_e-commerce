@@ -1,0 +1,16 @@
+# Dependencias de Node.js (Backend)
+node_modules/
+
+# Variables de entorno (¡Secretos y Contraseñas!)
+.env
+
+# Archivos de registro de errores (Logs)
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos ocultos del sistema operativo (Windows/Mac)
+.DS_Store
+Thumbs.db
+
+.vscode
