@@ -2,7 +2,7 @@
 // Reemplaza la línea "const BASE_URL = ..." por esto:
 const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 // Aquí pondrás la URL que te dé Render en el Paso 3
-const PRODUCTION_URL = 'https://https://proyecto-e-commerce-1.onrender.com-api-backend.onrender.com/api'; 
+const PRODUCTION_URL = 'https://proyecto-e-commerce-1.onrender.com/api';
 
 const BASE_URL = isLocal ? 'http://localhost:3000/api' : PRODUCTION_URL;
 
