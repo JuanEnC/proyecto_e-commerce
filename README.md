@@ -1,7 +1,7 @@
 <div align="center">
-  <h1>🛍️ E-Commerce Full-Stack Project</h1>
+  <h1> E-Commerce Full-Stack Project</h1>
   <p>
-    <img src="https://img.shields.io/badge/Status-En%20Producci%C3%B3n-success?style=for-the-badge&logo=github" alt="Status">
+    <img src="https://img.shields.io/badge/status-finalizado-brightgreen?style=for-the-badge" alt="Status">
     <img src="https://img.shields.io/badge/Version-1.0.0-blue?style=for-the-badge" alt="Version">
     <img src="https://img.shields.io/badge/Licencia-MIT-green?style=for-the-badge" alt="License">
   </p>
@@ -11,7 +11,7 @@
 
 ---
 
-## 🛠️ Arquitectura y Stack Tecnológico
+##  Arquitectura y Stack Tecnológico
 
 El proyecto está construido como un **Monorepo** separando lógicamente el Frontend del Backend, desplegados en infraestructuras independientes para maximizar rendimiento y seguridad.
 
@@ -21,7 +21,7 @@ El proyecto está construido como un **Monorepo** separando lógicamente el Fron
 | **Backend** | Node.js, Express.js | Lógica de negocio, API RESTful, Middlewares. | ☁️ **Render** |
 | **Base de Datos**| MySQL | Almacenamiento relacional, transacciones, integridad referencial. | ☁️ **TiDB Cloud** (Serverless) |
 
-### 📦 Dependencias del Servidor (Node.js)
+###  Dependencias del Servidor (Node.js)
 | Paquete | Versión | Propósito Principal |
 | :--- | :--- | :--- |
 | `bcrypt` | `^6.0.0` | Hashing y salting de contraseñas para protección de datos confidenciales. |
@@ -32,18 +32,18 @@ El proyecto está construido como un **Monorepo** separando lógicamente el Fron
 
 ---
 
-## ✨ Características y Funcionalidades
+##  Características y Funcionalidades
 
 El sistema maneja dos tipos de roles, protegidos y validados criptográficamente mediante JSON Web Tokens (JWT).
 
-### 🛒 Funcionalidades del Cliente (Frontend)
+###  Funcionalidades del Cliente (Frontend)
 - [x] **Autenticación:** Registro de nuevos clientes e inicio de sesión seguro.
 - [x] **Catálogo Dinámico:** Visualización de productos en tiempo real consultando la base de datos.
 - [x] **Carrito de Compras:** Sistema persistente para agregar y gestionar productos previo a la compra.
 - [x] **Checkout y Pedidos:** Creación de órdenes con descuento automático y transaccional del inventario (Stock).
 - [x] **Historial:** Consulta de pedidos anteriores realizados por el cliente logueado.
 
-### ⚙️ Funcionalidades del Administrador (API REST)
+###  Funcionalidades del Administrador (API REST)
 - [x] **Acceso Privilegiado:** Autenticación y generación de token exclusivo de nivel administrador.
 - [x] **Auditoría de Usuarios:** Endpoint para recuperar y visualizar todos los clientes registrados.
 - [x] **Gestión de Inventario (CRUD):** - Recuperar todos los productos del sistema.
@@ -52,7 +52,7 @@ El sistema maneja dos tipos de roles, protegidos y validados criptográficamente
 
 ---
 
-## 🎨 Diseño e Interfaz
+##  Diseño e Interfaz
 
 La experiencia de usuario (UX) y la interfaz (UI) se desarrollaron bajo principios de rendimiento y escalabilidad visual:
 
@@ -63,10 +63,10 @@ La experiencia de usuario (UX) y la interfaz (UI) se desarrollaron bajo principi
 
 ---
 
-## 📂 Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```bash
-📦 proyecto_e-commerce
+ proyecto_e-commerce
  ┣  backend/
  ┃ ┣  controllers/     # Lógica de negocio (auth, orders, products, clients)
  ┃ ┣  middlewares/     # Validadores de seguridad (verifyToken, verifyAdmin)
@@ -82,7 +82,7 @@ La experiencia de usuario (UX) y la interfaz (UI) se desarrollaron bajo principi
  ┗  package.json
 ```
 
-## 🌐 Endpoints de la API REST
+##  Endpoints de la API REST
 
 | Método | Endpoint | Descripción | Requiere Token | Rol Mínimo |
 | :--- | :--- | :--- | :---: | :---: |
@@ -95,7 +95,7 @@ La experiencia de usuario (UX) y la interfaz (UI) se desarrollaron bajo principi
 | `POST` | `/api/products` | Crea un producto nuevo en BD | ✅ | **Admin** |
 | `PUT` | `/api/products/:id` | Modifica un producto existente | ✅ | **Admin** |
 
-## 👥 Autores
+##  Autores
 
 Proyecto desarrollado por:
 
