@@ -4,65 +4,84 @@ const db = require('../models/db');
 const orderController = {
     // CREAR UN NUEVO PEDIDO
     createOrder: async (req, res) => {
-        // Extraemos el idClient del token (que será inyectado por el middleware de seguridad más adelante)
         const idClient = req.user.id; 
-        const { total, items } = req.body;
+        let { items } = req.body; 
 
         if (!items || items.length === 0) {
             return res.status(400).json({ message: "El carrito está vacío." });
         }
 
-        // Obtener una conexión dedicada para la transacción
-        const connection = await db.getConnection();
+        // SOLUCION Agrupar productos duplicados y sumar cantidades
+        const groupedItemsMap = new Map();
+        
+        for (let item of items) {
+            if (groupedItemsMap.has(item.idProduct)) {
+                const existingItem = groupedItemsMap.get(item.idProduct);
+                existingItem.quantity += item.quantity; 
+            } else {
+                groupedItemsMap.set(item.idProduct, { ...item }); 
+            }
+        }
+        
+        const cleanItems = Array.from(groupedItemsMap.values());
+
+        const connection = await db.getConnection(); 
+        await connection.beginTransaction();
 
         try {
-            // Iniciar transacción
-            await connection.beginTransaction();
-
-            // 1. Insertar el pedido en 'orders'
-            const orderQuery = 'INSERT INTO orders (idClient, total, status) VALUES (?, ?, ?)';
-            const [orderResult] = await connection.query(orderQuery, [idClient, total, 'PENDING']);
-            const newOrderId = orderResult.insertId;
-
-            // 2. Insertar cada producto en 'orderDetails'
-            const detailsQuery = 'INSERT INTO orderDetails (orderId, idProduct, quantityOrdered, priceEach) VALUES (?, ?, ?, ?)';
+            let total = 0;
             
-            for (let item of items) {
-                await connection.query(detailsQuery, [newOrderId, item.idProduct, item.quantity, item.priceEach]);
+            for (let item of cleanItems) {
+                const [product] = await connection.query('SELECT price, stock FROM products WHERE idProduct = ?', [item.idProduct]);
                 
-                // 3. (Opcional) Restar el stock del producto
-                await connection.query('UPDATE products SET stock = stock - ? WHERE idProduct = ?', [item.quantity, item.idProduct]);
+                if (product.length === 0) throw new Error(`Producto ${item.idProduct} no encontrado.`);
+                if (product[0].stock < item.quantity) throw new Error(`Stock insuficiente para el producto ${item.idProduct}.`);
+
+                item.price = product[0].price;
+                total += item.price * item.quantity;
             }
 
-            // Confirmar transacción (Guardar todo de forma permanente)
+            const [orderResult] = await connection.query(
+                'INSERT INTO orders (idClient, total) VALUES (?, ?)', 
+                [idClient, total]
+            );
+            const newOrderId = orderResult.insertId;
+
+            for (let item of cleanItems) {
+                await connection.query(
+                    'INSERT INTO orderDetails (orderId, idProduct, quantityOrdered, priceEach) VALUES (?, ?, ?, ?)',
+                    [newOrderId, item.idProduct, item.quantity, item.price]
+                );
+
+                await connection.query(
+                    'UPDATE products SET stock = stock - ? WHERE idProduct = ?',
+                    [item.quantity, item.idProduct]
+                );
+            }
+
             await connection.commit();
-            res.status(201).json({ message: "Pedido realizado con éxito.", orderId: newOrderId });
+            res.status(201).json({ message: "Pedido creado exitosamente", orderId: newOrderId });
 
         } catch (error) {
-            // Si algo falla, deshacemos todos los cambios en la base de datos
             await connection.rollback();
-            console.error("Error al crear pedido:", error);
-            res.status(500).json({ message: "Error al procesar el pedido." });
+            console.error("Error transaccional en createOrder:", error); 
+            res.status(400).json({ message: error.message });
         } finally {
-            // Liberar la conexión
-            connection.release();
+            connection.release(); 
         }
     },
 
     // RECUPERAR PEDIDOS DEL CLIENTE
     getMyOrders: async (req, res) => {
         try {
-            const idClient = req.user.id; // Extraído del token
+            const idClient = req.user.id; 
 
-            // 1. Obtener los pedidos principales
             const [orders] = await db.query('SELECT * FROM orders WHERE idClient = ? ORDER BY date DESC', [idClient]);
 
             if (orders.length === 0) {
                 return res.json([]);
             }
 
-            // 2. Para cada pedido, obtener sus detalles (qué productos compró)
-            // Se hace un JOIN con products para devolver el nombre del producto al frontend
             for (let order of orders) {
                 const detailsQuery = `
                     SELECT od.quantityOrdered, od.priceEach, p.name 
@@ -71,7 +90,7 @@ const orderController = {
                     WHERE od.orderId = ?
                 `;
                 const [items] = await db.query(detailsQuery, [order.orderId]);
-                order.items = items; // Adjuntamos el arreglo al objeto de la orden
+                order.items = items; 
             }
 
             res.json(orders);
